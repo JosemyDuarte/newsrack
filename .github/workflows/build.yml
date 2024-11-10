@@ -3,7 +3,7 @@ name: "Build"
 on:
   push:
     branches:
-      - '**'
+      - "**"
   schedule:
     # Customise: Cron interval
     - cron: "0 3,7,11,15,19,23 * * *"
@@ -53,7 +53,7 @@ jobs:
         uses: actions/setup-node@v3
         timeout-minutes: 1
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
 
       - name: Install npm dependencies
         timeout-minutes: 1
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/setup-python@v4
         timeout-minutes: 1
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install python requirements
         timeout-minutes: 1
@@ -99,7 +99,7 @@ jobs:
         with:
           name: meta-artifacts
           path: meta
-          search_artifacts:  true
+          search_artifacts: true
           if_no_artifact_found: warn
 
       - name: Setup Pages
@@ -133,7 +133,7 @@ jobs:
         timeout-minutes: 2
 
       - uses: actions/upload-artifact@v3
-        timeout-minutes: 1
+        timeout-minutes: 2
         with:
           name: meta-artifacts
           path: meta
