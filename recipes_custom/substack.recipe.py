@@ -24,29 +24,9 @@ class Substack(BasicNewsrackRecipe, BasicNewsRecipe):
     cover_url = 'https://substack.com/img/substack.png'
     extra_css = '.captioned-image-container, .image-container {font-size: small;}'
 
-    recipe_specific_options = {
-        'auths': {
-            'short': 'enter the @handles you subscribe to:\nseperated by a space',
-            'long': 'weskao',
-            'default': 'weskao',
-        },
-        'days': {
-            'short': 'Oldest article to download from this news source. In days ',
-            'long': 'For example, 0.5, gives you articles from the past 12 hours',
-            'default': str(oldest_article),
-        },
-        'res': {
-            'short': 'For hi-res images, select a resolution from the\nfollowing options: 800, 1000, 1200 or 1500',
-            'long': 'This is useful for non e-ink devices, and for a lower file size\nthan the default, use 400 or 300.',
-            'default': '600',
-        },
-    }
-
-    def __init__(self, *args, **kwargs):
-        BasicNewsRecipe.__init__(self, *args, **kwargs)
-        d = self.recipe_specific_options.get('days')
-        if d and isinstance(d, str):
-            self.oldest_article = float(d)
+    handles = [
+        "weskao",
+    ]
 
     # Every Substack publication has an RSS feed at https://{name}.substack.com/feed.
     # The same URL provides either all posts, or all free posts + previews of paid posts,
@@ -77,17 +57,12 @@ class Substack(BasicNewsrackRecipe, BasicNewsRecipe):
 
     def get_feeds(self):
         ans = []
-        u = self.recipe_specific_options.get('auths')
-        if u and isinstance(u, str):
-            for x in u.split():
-                ans.append('https://' + x.replace('@', ' ') + '.substack.com/feed')
+        for handle in self.handles:
+            ans.append('https://' + handle + '.substack.com/feed')
         return ans
 
     def preprocess_html(self, soup):
         res = '600'
-        w = self.recipe_specific_options.get('res')
-        if w and isinstance(w, str):
-            res = w
         for img in soup.findAll('img', attrs={'src': True}):
             img['src'] = re.sub(r'w_\d+', 'w_' + res, img['src'])
         for src in soup.findAll(['source', 'svg']):
