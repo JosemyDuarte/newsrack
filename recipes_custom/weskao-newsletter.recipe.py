@@ -4,8 +4,9 @@ import sys
 
 from mechanize import Request
 from calibre.web.feeds.news import BasicNewsRecipe
-from recipes_shared import BasicNewsrackRecipe, format_title
+
 sys.path.append(os.environ["recipes_includes"])
+from recipes_shared import BasicNewsrackRecipe, format_title
 
 _name = 'Wes Kao'
 
