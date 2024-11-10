@@ -6,9 +6,10 @@ import sys
 from calibre.web.feeds.news import BasicNewsRecipe
 
 sys.path.append(os.environ["recipes_includes"])
+from recipes_shared import BasicCookielessNewsrackRecipe, format_title
 from mechanize import Request
 
-class Substack(BasicNewsRecipe):
+class Substack(BasicCookielessNewsrackRecipe, BasicNewsRecipe):
     title = 'Substack'
     __author__ = 'Josemy'
     description = 'Use advanced menu if you want to add your own substack handles.'
@@ -26,13 +27,6 @@ class Substack(BasicNewsRecipe):
     handles = [
         "weskao",
     ]
-
-    def __init__(self, *args, **kwargs):
-        BasicNewsRecipe.__init__(self, *args, **kwargs)
-        d = "7"
-        if d and isinstance(d, str):
-            self.oldest_article = float(d)
-
 
     # Every Substack publication has an RSS feed at https://{name}.substack.com/feed.
     # The same URL provides either all posts, or all free posts + previews of paid posts,
