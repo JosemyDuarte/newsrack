@@ -13,14 +13,11 @@ categories_sort: List[str] = []
 
 recipes: List[Recipe] = [
      Recipe(
-        recipe="weskao-newsletter",
-        slug="weskao-newsletter",
+        recipe="substack",
+        slug="substack",
         src_ext="mobi",
         target_ext=["epub"],
         category="Blogs/Newsletters",
         tags=["commentary"],
-        cover_options=CoverOptions(
-            logo_path_or_url="https://substackcdn.com/image/fetch/w_96,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1b53bd7d-121d-45b5-8b63-77c9cc08ffbd_1280x1280.png"
-        )
      ),
 ]
