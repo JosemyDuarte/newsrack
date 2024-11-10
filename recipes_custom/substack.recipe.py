@@ -9,17 +9,20 @@ sys.path.append(os.environ["recipes_includes"])
 from recipes_shared import BasicNewsrackRecipe, format_title
 from mechanize import Request
 
-class WesKaoSubstack(BasicNewsrackRecipe, BasicNewsRecipe):
-    title          = 'Substack'
+class Substack(BasicNewsrackRecipe, BasicNewsRecipe):
+    title = 'Substack'
+    __author__ = 'Josemy'
+    description = 'Use advanced menu if you want to add your own substack handles.'
     oldest_article = 7
     language = 'en'
     max_articles_per_feed = 5
-    auto_cleanup   = True
+    auto_cleanup = True
+    auto_cleanup_keep = '//*[@class="subtitle"]'
     needs_subscription = 'optional'
     use_embedded_content = False
     masthead_url = 'https://substack.com/img/substack_wordmark.png'
     cover_url = 'https://substack.com/img/substack.png'
-    remove_tags = [dict(name='div', class_='paywall-jump')]
+    extra_css = '.captioned-image-container, .image-container {font-size: small;}'
 
     recipe_specific_options = {
         'auths': {
@@ -38,6 +41,19 @@ class WesKaoSubstack(BasicNewsrackRecipe, BasicNewsRecipe):
             'default': '600',
         },
     }
+
+    def __init__(self, *args, **kwargs):
+        BasicNewsRecipe.__init__(self, *args, **kwargs)
+        d = self.recipe_specific_options.get('days')
+        if d and isinstance(d, str):
+            self.oldest_article = float(d)
+
+    # Every Substack publication has an RSS feed at https://{name}.substack.com/feed.
+    # The same URL provides either all posts, or all free posts + previews of paid posts,
+    # depending on whether you're logged in.
+    # feeds          = [
+    #     ('Novum Lumen', 'https://novumlumen.substack.com/feed'),    # gratuitously self-promotional example
+    # ]
 
     def get_browser(self):
         br = BasicNewsRecipe.get_browser(self)
@@ -58,12 +74,6 @@ class WesKaoSubstack(BasicNewsrackRecipe, BasicNewsRecipe):
             if res.getcode() != 200:
                 raise ValueError('Login failed, check username and password')
         return br
-    
-    def populate_article_metadata(self, article, __, _):
-        if (not self.pub_date) or article.utctime > self.pub_date:
-            self.pub_date = article.utctime
-            self.title = format_title('substack', article.utctime)
-
 
     def get_feeds(self):
         ans = []
@@ -72,7 +82,6 @@ class WesKaoSubstack(BasicNewsrackRecipe, BasicNewsRecipe):
             for x in u.split():
                 ans.append('https://' + x.replace('@', ' ') + '.substack.com/feed')
         return ans
-
 
     def preprocess_html(self, soup):
         res = '600'
