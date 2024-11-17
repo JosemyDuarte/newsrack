@@ -62,7 +62,6 @@ recipes: List[Recipe] = [
             logo_path_or_url="https://www.ft.com/partnercontent/content-hub/static/media/ft-horiz-new-black.215c1169.png"
         ),
     ),
-
     Recipe(
         recipe="lithub",
         slug="lithub",
@@ -87,38 +86,6 @@ recipes: List[Recipe] = [
         cover_options=CoverOptions(
             text_colour="#444444",
             logo_path_or_url="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/MIT_Technology_Review_modern_logo.svg/1024px-MIT_Technology_Review_modern_logo.svg.png",
-        ),
-    ),
-    Recipe(
-        recipe="mit-tech-review-magazine",
-        slug="mit-tech-review-magazine",
-        src_ext="mobi",
-        target_ext=["epub"],
-        category="Magazines",
-        overwrite_cover=False,
-        enable_on=first_n_days_of_month(7, -5) or last_n_days_of_month(7, -5),
-        tags=["technology"],
-    ),
-    Recipe(
-        recipe="mollywhite-newsletter",
-        slug="mollywhite-newsletter",
-        src_ext="mobi",
-        target_ext=["epub"],
-        category="Blogs/Newsletters",
-        tags=["technology"],
-        cover_options=CoverOptions(
-            logo_path_or_url="https://substackcdn.com/image/fetch/w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F3b6a58dc-123a-492b-a1e2-b46138add2b9_856x856.png"
-        ),
-    ),
-    Recipe(
-        recipe="natesilver",
-        slug="natesilver",
-        src_ext="mobi",
-        target_ext=["epub"],
-        category="Blogs/Newsletters",
-        tags=["commentary"],
-        cover_options=CoverOptions(
-            logo_path_or_url="https://substackcdn.com/image/fetch/w_256,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9798f361-e880-406c-9ed4-29229df02c27_256x256.png"
         ),
     ),
     Recipe(
