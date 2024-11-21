@@ -17,4 +17,20 @@ recipes: List[Recipe] = [
         target_ext=["epub"],
         tags=["software", "news"],
     ),
+    Recipe(
+        recipe="theverge",
+        slug="theverge",
+        category="technology",
+        src_ext="mobi",
+        target_ext=["epub"],
+        tags=["news"],
+    ),
+    Recipe(
+        recipe="substack",
+        slug="substack",
+        category="newsletter",
+        src_ext="mobi",
+        target_ext=["epub"],
+        tags=["weekly", "growth"],
+    ),
 ]

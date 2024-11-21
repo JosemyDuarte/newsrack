@@ -39,53 +39,28 @@ categories_sort: List[str] = ["News", "Magazines", "Online Magazines", "Arts & C
 
 # Keep this list in alphabetical order
 recipes: List[Recipe] = [
-    Recipe(
-        recipe="fivebooks",
-        slug="fivebooks",
-        src_ext="mobi",
-        target_ext=["epub"],
-        category="Arts & Culture",
-        enable_on=onlyon_weekdays([0, 1, 2, 3, 4]),
-        cover_options=CoverOptions(
-            logo_path_or_url="https://fivebooks.com/app/themes/five-books/assets/images/logo.png"
-        ),
-        tags=["literature", "books"],
-    ),
-    Recipe(
-        recipe="lithub",
-        slug="lithub",
-        src_ext="mobi",
-        target_ext=["epub"],
-        category="Arts & Culture",
-        enable_on=onlyon_weekdays([0, 1, 2, 3, 4], -5)
-        and onlyat_hours(list(range(10, 17)), -5),
-        cover_options=CoverOptions(
-            logo_path_or_url="https://s26162.pcdn.co/wp-content/themes/rigel/images/social_logo.png"
-        ),
-        tags=["literature", "books"],
-    ),
-    Recipe(
-        recipe="vox",
-        slug="vox",
-        src_ext="mobi",
-        target_ext=["epub"],
-        category="Online Magazines",
-        cover_options=CoverOptions(
-            logo_path_or_url="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vox_logo.svg/300px-Vox_logo.svg.png"
-        ),
-    ),
-    Recipe(
-        recipe="wired",
-        slug="wired",
-        src_ext="mobi",
-        target_ext=["epub"],
-        overwrite_cover=True,
-        category="Online Magazines",
-        tags=["technology"],
-        enable_on=(first_n_days_of_month(7) or last_n_days_of_month(7))
-        and onlyat_hours(list(range(10, 18))),
-        cover_options=CoverOptions(
-            logo_path_or_url="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Wired_logo.svg/1024px-Wired_logo.svg.png"
-        ),
-    ),
+    # Recipe(
+    #     recipe="vox",
+    #     slug="vox",
+    #     src_ext="mobi",
+    #     target_ext=["epub"],
+    #     category="Online Magazines",
+    #     cover_options=CoverOptions(
+    #         logo_path_or_url="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Vox_logo.svg/300px-Vox_logo.svg.png"
+    #     ),
+    # ),
+    # Recipe(
+    #     recipe="wired",
+    #     slug="wired",
+    #     src_ext="mobi",
+    #     target_ext=["epub"],
+    #     overwrite_cover=True,
+    #     category="Online Magazines",
+    #     tags=["technology"],
+    #     enable_on=(first_n_days_of_month(7) or last_n_days_of_month(7))
+    #     and onlyat_hours(list(range(10, 18))),
+    #     cover_options=CoverOptions(
+    #         logo_path_or_url="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Wired_logo.svg/1024px-Wired_logo.svg.png"
+    #     ),
+    # ),
 ]
