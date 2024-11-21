@@ -34,6 +34,14 @@ recipes: List[Recipe] = [
         tags=["weekly", "growth", "newsletter"],
     ),
     Recipe(
+        recipe="dailyfeeds",
+        slug="dailyfeeds",
+        category="newsletter",
+        src_ext="mobi",
+        target_ext=["epub"],
+        tags=["daily", "newsletter"],
+    ),
+    Recipe(
         recipe="weeklyfeeds",
         slug="weeklyfeeds",
         category="newsletter",
