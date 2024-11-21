@@ -52,17 +52,6 @@ recipes: List[Recipe] = [
         tags=["literature", "books"],
     ),
     Recipe(
-        recipe="ft",
-        slug="ft-online",
-        src_ext="mobi",
-        target_ext=["epub"],
-        category="News",
-        tags=["business"],
-        cover_options=CoverOptions(
-            logo_path_or_url="https://www.ft.com/partnercontent/content-hub/static/media/ft-horiz-new-black.215c1169.png"
-        ),
-    ),
-    Recipe(
         recipe="lithub",
         slug="lithub",
         src_ext="mobi",
@@ -74,19 +63,6 @@ recipes: List[Recipe] = [
             logo_path_or_url="https://s26162.pcdn.co/wp-content/themes/rigel/images/social_logo.png"
         ),
         tags=["literature", "books"],
-    ),
-    Recipe(
-        recipe="mit-tech-review",
-        slug="mit-tech-review-feed",
-        src_ext="mobi",
-        target_ext=["epub"],
-        category="Online Magazines",
-        enable_on=onlyon_weekdays([0, 1, 2, 3, 4, 5], -4),
-        tags=["technology"],
-        cover_options=CoverOptions(
-            text_colour="#444444",
-            logo_path_or_url="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/MIT_Technology_Review_modern_logo.svg/1024px-MIT_Technology_Review_modern_logo.svg.png",
-        ),
     ),
     Recipe(
         recipe="vox",
